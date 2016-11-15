@@ -6,4 +6,7 @@ class Oystercard
     @money = money
   end
 
+  def balance
+  end
+
 end
