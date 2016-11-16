@@ -37,4 +37,8 @@ describe Oystercard do
     expect(subject.touch_in).to be_truthy
   end
 
+  it 'knows if a user has touched out' do
+    expect(subject.touch_out).to eq false
+  end
+
 end

@@ -27,4 +27,8 @@ class Oystercard
     @journey
   end
 
+  def touch_out
+    !@journey
+  end
+
 end
