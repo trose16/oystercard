@@ -20,9 +20,21 @@ describe Oystercard do
     expect(subject.top_up(amount)).to eq(subject.balance)
   end
 
-  it 'raise an error if balance exceeds 90' do
+  it 'raises an error if balance exceeds 90' do
     subject.top_up(90)
     expect{subject.top_up(1)}.to raise_error("Card exceeds 90!")
+  end
+
+  it 'deducts spent money' do
+    expect{subject.deduct(1)}.to change{subject.balance}
+  end
+
+  it 'tracks a users journey' do
+    expect(:in_journey?).to be_truthy
+  end
+
+  it 'knows if a user has touched in' do
+    expect(subject.touch_in).to be_truthy
   end
 
 end
