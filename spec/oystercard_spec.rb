@@ -65,6 +65,11 @@ describe Oystercard do
             expect(subject.journey).to eq({:start => station, :end => station2})
           end
 
+          it 'saves a list of all user journeys' do
+            3.times{subject.touch_in(station)}
+            3.times{subject.touch_out(station2)}
+            expect(subject.journey_list).to eq([{:start => station, :end => station2},{:start => station, :end => station2},{:start => station, :end => station2}])
+          end
 
       end
  end

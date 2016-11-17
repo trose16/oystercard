@@ -34,6 +34,7 @@ class Oystercard
   def touch_out(station)
     @exit_station = station
     @journey = {:start => @entry_station, :end => @exit_station}
+    @journey_list << @journey
     @travelling = false
   end
 
