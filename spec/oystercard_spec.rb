@@ -77,7 +77,7 @@ describe "Not topped up" do
             end
 
             it 'starts with an empty list of journeys' do
-            expect(subject.journey).to eq({})
+            expect(subject.journey_list).to eq([])
             end
 
         end
