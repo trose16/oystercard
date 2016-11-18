@@ -33,19 +33,17 @@ describe Oystercard do
 
       end
 
-      # it 'tracks a users journey' do
-      #   expect(:in_journey?).to be_truthy
-      # end
+
 
       context "when the user touches in" do
 
           it 'expect true' do
             expect(card.touch_in(station)).to eq true
           end
-          it 'tracks entry station' do
-            card.touch_in(station)
-            expect(card.entry_station).to eq station
-          end
+          # it 'tracks entry station' do
+          #   card.touch_in(station)
+          #   expect(card.entry_station).to eq station
+          # end
 
       end
 
@@ -55,10 +53,10 @@ describe Oystercard do
              expect(card.touch_out(station)).to eq false
            end
 
-          it 'tracks exit station' do
-            subject.touch_out(station)
-            expect(card.exit_station).to eq station
-          end
+          # xit 'tracks exit station' do
+          #   subject.touch_out(station)
+          #   expect(card.exit_station).to eq station
+          # end
 
           it 'tracks their full journey' do
             card.touch_in(station)

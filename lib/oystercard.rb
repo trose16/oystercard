@@ -28,18 +28,20 @@ class Oystercard
   end
 
   def touch_in(station)
-    @entry_station = station
     raise "Insufficient funds please top up" if @balance < MINIMUM
     @travelling = true
+    @entry_station = station
   end
 
   def touch_out(station)
-    @exit_station = station
-    @journey = {:start => @entry_station, :end => @exit_station}
-    @journey_list << @journey
-    @exit_station = nil
-    @entry_station = nil
     @travelling = false
+    @exit_station = station
+    journey = journey_record(entry_station, exit_station)
+    @journey_list << journey
+  end
+
+  def journey_record(entry_station, exit_station)
+    {:start => @entry_station, :end => @exit_station}
   end
 
 
