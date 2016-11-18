@@ -37,6 +37,8 @@ class Oystercard
     @exit_station = station
     @journey = {:start => @entry_station, :end => @exit_station}
     @journey_list << @journey
+    @exit_station = nil
+    @entry_station = nil
     @travelling = false
   end
 

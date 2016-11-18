@@ -5,28 +5,29 @@ describe Oystercard do
 
   let(:station) {double(:station)}
   let(:station2) {double(:station)}
+  subject(:card) {described_class.new}
 
   describe "Topped up" do
 
     before do
-      subject.top_up(20)
+      card.top_up(20)
     end
 
       context "Does the class respond to these methods" do
 
           it 'checks card for balance' do
-            expect(subject).to respond_to(:balance)
+            expect(card).to respond_to(:balance)
           end
 
           it 'allows user to add money' do
-            expect(subject).to respond_to(:top_up).with(1).argument
+            expect(card).to respond_to(:top_up).with(1).argument
           end
       end
 
       context "Does the balance feature work as intended" do
 
           it 'raises an error if balance exceeds 90' do
-            subject.top_up(70)
+            card.top_up(70)
             expect{subject.top_up(1)}.to raise_error("Card exceeds 90!")
           end
 
@@ -39,11 +40,11 @@ describe Oystercard do
       context "when the user touches in" do
 
           it 'expect true' do
-            expect(subject.touch_in(station)).to eq true
+            expect(card.touch_in(station)).to eq true
           end
           it 'tracks entry station' do
-            subject.touch_in(station)
-            expect(subject.entry_station).to eq station
+            card.touch_in(station)
+            expect(card.entry_station).to eq station
           end
 
       end
@@ -51,23 +52,23 @@ describe Oystercard do
       context "when the user touches out" do
 
            it 'knows if a user has touched out' do
-             expect(subject.touch_out(station)).to eq false
+             expect(card.touch_out(station)).to eq false
            end
 
           it 'tracks exit station' do
             subject.touch_out(station)
-            expect(subject.exit_station).to eq station
+            expect(card.exit_station).to eq station
           end
 
           it 'tracks their full journey' do
-            subject.touch_in(station)
-            subject.touch_out(station2)
+            card.touch_in(station)
+            card.touch_out(station2)
             expect(subject.journey).to eq({:start => station, :end => station2})
           end
 
           it 'saves a list of all user journeys' do
-            3.times{subject.touch_in(station)}
-            3.times{subject.touch_out(station2)}
+            3.times{card.touch_in(station)}
+            3.times{card.touch_out(station2)}
             expect(subject.journey_list).to eq([{:start => station, :end => station2},{:start => station, :end => station2},{:start => station, :end => station2}])
           end
 
